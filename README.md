@@ -82,6 +82,43 @@ curl -X POST http://localhost:3000/api/crawl \
 -d '{"url":"https://example.com","type":"listing"}'
 ```
 
+### Common issues and solutions:
+
+#### Clean install and start:
+```bash
+# 1. Remove existing files
+rm -rf node_modules package-lock.json dist
+# 2. Install dependencies
+npm install
+# 3. Start the development servers
+npm run dev
+```
+
+#### If you get a 404:
+```bash
+# Check if the Vite server is running
+lsof -i :5173
+
+# Kill any existing processes
+npx kill-port 5173 3000
+
+# Start fresh
+npm run dev
+```
+#### If you get module errors:
+```bash
+# Clear Vite cache
+rm -rf node_modules/.vite
+npm run dev
+```
+
+#### If you get TypeScript errors:
+```bash
+# Regenerate TypeScript config
+rm tsconfig.json tsconfig.node.json
+vue-tsc --init
+```
+
 ## Image Requirements
 ### Listing Pages
 

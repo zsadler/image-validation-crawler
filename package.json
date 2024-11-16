@@ -1,11 +1,11 @@
 {
     "name": "image-validation-crawler",
-    "author": "Zoe Sadler-Jasmin <hi@hshoff.com> (https://twitter.com/hshoff)",
+    "author": "Zoe Sadler-Jasmin <https://github.com/zsadler> (https://zsadler.github.io/)",
     "license": "MIT",
+    "homepage": "https://github.com/zsadler/image-validation-crawler#readme",
     "bugs": {
-        "url": "https://github.com/airbnb/javascript/issues"
+        "url": "https://github.com/zsadler/image-validation-crawler/issues"
     },
-    "homepage": "https://github.com/airbnb/javascript",
     "private": true,
     "version": "1.0.0",
     "type": "module",
