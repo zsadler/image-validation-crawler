@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 const url = ref('');
 const type = ref<'listing' | 'detail'>('listing');
 const results = ref<any[]>([]);
@@ -34,33 +44,48 @@ const crawlPage = async () => {
 
 <template>
     <div>
-        <h1 class="text-2xl font-bold mb-6">Product Image Crawler</h1>
+        <h1>Product Image Crawler</h1>
 
-        <div class="mb-6">
-            <label class="block mb-2 font-medium">Enter Product Page URL</label>
-            <input
-                v-model="url"
-                type="url"
-                class="w-full p-3 border rounded-lg mb-2"
-                placeholder="https://example.com/product-page"
-            />
+        <form class="w-full h-fit max-w-96 relative">
+            <label class="block">
+                <span class="block text-sm font-medium">Enter Page URL</span>
+                <Input v-model="url"
+                       type="url"
+                       placeholder="https://example.com/product-page"
+                       class="w-full pl-8 bg-background border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400
+                              focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500
+                              disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none
+                              invalid:border-pink-500 invalid:text-pink-600
+                              focus:invalid:border-pink-500 focus:invalid:ring-pink-500
+                            "/>
+            </label>
+
 
             <div class="mb-4">
-                <label class="block mb-2 font-medium">Page Type</label>
-                <select v-model="type" class="p-2 border rounded">
-                    <option value="listing">Listing Page</option>
-                    <option value="detail">Detail Page</option>
-                </select>
+                <Select  v-model="type">
+                    <SelectTrigger>
+                        <SelectValue placeholder="Configuration Setting:" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                            <SelectLabel>Select a Page Type:</SelectLabel>
+                            <SelectItem value="listing">Listing Page</SelectItem>
+                            <SelectItem value="detail">Details Page</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                </Select>
+
+
             </div>
 
-            <button
+            <Button
                 @click="crawlPage"
                 :disabled="isLoading"
                 class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400"
             >
                 {{ isLoading ? 'Crawling...' : 'Crawl Page' }}
-            </button>
-        </div>
+            </Button>
+        </form>
 
         <!-- Results -->
         <div v-if="results.length" class="space-y-4">
