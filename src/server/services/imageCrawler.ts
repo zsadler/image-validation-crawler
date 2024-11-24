@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import probe from 'probe-image-size';
-import type { CrawlRequest, ImageInfo, CrawlResponse, SourceInfo } from '../types';
+import type {CrawlRequest, ImageInfo, CrawlResponse, SourceInfo, ResponsiveSourceInfo} from '../types';
 
 export class ImageCrawler {
     private static readonly LISTING_MIN_SIZE = 800;
